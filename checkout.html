@@ -23,7 +23,7 @@
         <div class="small"><span id="productVariant" class="badge"></span></div>
       </div>
 
-      <form id="checkoutForm" class="form-grid" method="POST" action="https://formspree.io/f/YOUR_FORM_ID">
+      <form id="checkoutForm" class="form-grid" method="POST" action="https://formspree.io/f/mblkpvbk">
         <!-- hidden product fields -->
         <input type="hidden" name="productName" id="hiddenProductName" />
         <input type="hidden" name="productPrice" id="hiddenProductPrice" />
@@ -139,6 +139,7 @@
   </main>
 
   <script>
+    
     const fmt = (n) => "DA " + (Number(n)||0).toLocaleString("en-DZ", {minimumFractionDigits:2, maximumFractionDigits:2});
     const selected = JSON.parse(localStorage.getItem("selectedProduct") || "{}");
     const productPrice = Number(selected.price||0);
@@ -201,5 +202,23 @@
     document.getElementById("stateSelect").addEventListener("change", updateDeliveryCost);
     document.getElementById("deliveryType").addEventListener("change", updateDeliveryCost);
   </script>
+     <script>
+document.getElementById('checkoutForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const form = e.target;
+  const res = await fetch(form.action, { 
+    method: 'POST', 
+    body: new FormData(form), 
+    headers: { 'Accept': 'application/json' } 
+  });
+  if (res.ok) {
+    // Optional: keep product for suggestions, or clear if you prefer
+    // localStorage.removeItem('selectedProduct');
+    window.location.href = 'thanks.html';   // ← redirect
+  } else {
+    alert('عذراً، حدث خطأ. حاول مرة أخرى.');
+  }
+});
+</script>
 </body>
 </html>

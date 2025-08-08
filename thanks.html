@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>شكراً لطلبك</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="css/Style.css" />
+  <style>
+    .thankyou-wrap{min-height:60vh; display:grid; place-items:center; text-align:center}
+    .thankyou-card{background:#fff; border:1px solid var(--border); border-radius:18px; box-shadow:var(--shadow); padding:28px; width:min(680px, 92%); margin:auto}
+    .thankyou-card h1{margin:.2rem 0 .4rem; font-weight:800}
+    .thankyou-card p{margin:0 0 1rem; color:var(--muted)}
+    .spacer{height:16px}
+  </style>
+</head>
+<body>
+  <header class="container nav">
+    <div class="brand" style="color:#111;">Ladies First</div>
+  </header>
+
+  <main class="container section">
+    <div class="thankyou-wrap">
+      <div class="thankyou-card">
+        <h1>شكراً لطلبك! 🎉</h1>
+        <p>تم استلام طلبك بنجاح. سيتواصل معك فريقنا لتأكيد الطلبية.</p>
+        <button class="btn" onclick="location.href='index.html'">العودة إلى الصفحة الرئيسية</button>
+      </div>
+    </div>
+
+    <div class="spacer"></div>
+    <h2 style="margin:0 0 10px;">قد يعجبك أيضاً</h2>
+    <div id="youMayLike" class="product-grid"></div>
+  </main>
+
+  <!-- Use the same product data/functions -->
+  <!-- Load your product data & helpers -->
+<script src="js/main.js"></script>
+
+<script>
+  // Fallback products in case main.js fails to load (path/case issues, etc.)
+  const FALLBACK_PRODUCTS = [
+    { id: 1, name: "صاك كروكو 3 قطع", price: 2300, image: "assets/products/croco3set.png" },
+    { id: 2, name: "باك لي ساك قطعتين", price: 1700, image: "assets/products/2piecespack.png" },
+    { id: 3, name: "بثلاث قطع GUESS باك لي ساك من علامة", price: 2900, image: "assets/products/guess3set.png" }
+  ];
+
+  // Price formatter fallback if fmt() not found
+  const money = (window.fmt) 
+      ? window.fmt 
+      : (n => "DA " + (Number(n)||0).toLocaleString("en-DZ", {minimumFractionDigits:2, maximumFractionDigits:2}));
+
+  function getProductsSafe() {
+    try {
+      if (Array.isArray(window.products) && window.products.length) return window.products;
+    } catch(e){}
+    return FALLBACK_PRODUCTS;
+  }
+
+  function renderSuggestions() {
+    const grid = document.getElementById('youMayLike');
+    if (!grid) return;
+
+    let excludeName = null;
+    try {
+      const sel = JSON.parse(localStorage.getItem('selectedProduct') || '{}');
+      excludeName = sel?.name || null;
+    } catch(e){}
+
+    const list = getProductsSafe()
+      .filter(p => !excludeName || p.name !== excludeName)
+      .slice(0, 3);
+
+    grid.innerHTML = ""; // clear if any
+    list.forEach(p => {
+      const card = document.createElement('article');
+      card.className = 'product-card';
+      card.innerHTML = `
+        <div class="media"><img src="${p.image}" alt="${p.name}"></div>
+        <div class="product-body">
+          <h3 class="product-title">${p.name}</h3>
+          <div class="price">${money(p.price)}</div>
+          <div class="row">
+            <button class="btn" onclick="location.href='catalog.html'">تسوقي الآن</button>
+          </div>
+        </div>`;
+      grid.appendChild(card);
+    });
+  }
+
+  // Wait until everything is loaded (avoids timing issues)
+  window.addEventListener('load', renderSuggestions);
+</script>
