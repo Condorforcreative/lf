@@ -57,7 +57,7 @@ body{
 
 .catalog-head{display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap; margin:8px 0 16px}
 .catalog-title{font-size:clamp(1.6rem, 3.2vw, 2.2rem); margin:0}
-.filters{display:flex; gap:10px; flex-wrap:wrap}
+.filters{ display:none;} 
 .select{background:#fff; border:1px solid var(--border); border-radius:12px; padding:.8rem 1rem; min-width:180px; font:inherit}
 
 .product-grid{display:grid; gap:22px; grid-template-columns:repeat(auto-fit, minmax(270px,1fr))}
