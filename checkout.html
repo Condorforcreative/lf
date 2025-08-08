@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>اكمال الطلبية</title>
+  <link rel="stylesheet" href="css/Style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <header class="container nav">
+    <div class="brand">Ladies First</div>
+  </header>
+
+  <main class="container section checkout-grid">
+    <!-- Form -->
+    <section class="card">
+      <h2 style="margin:0 0 10px">اكمال الطلبية</h2>
+
+      <!-- Product summary -->
+      <div id="productSummary" class="card" style="padding:12px; margin:10px 0 18px">
+        <div class="small">المنتج المختار</div>
+        <div class="line"><span id="productName"></span><span id="productPrice" class="badge"></span></div>
+        <div class="small"><span id="productVariant" class="badge"></span></div>
+      </div>
+
+      <form id="checkoutForm" class="form-grid" method="POST" action="https://formspree.io/f/YOUR_FORM_ID">
+        <!-- hidden product fields -->
+        <input type="hidden" name="productName" id="hiddenProductName" />
+        <input type="hidden" name="productPrice" id="hiddenProductPrice" />
+        <input type="hidden" name="productVariant" id="hiddenProductVariant" />
+
+        <div class="full">
+          <label>الاسم<input type="text" name="fullName" required></label>
+        </div>
+
+        <div>
+          <label>اللقب<input type="text" name="lastName" required></label>
+        </div>
+
+        <div>
+          <label>رقم الهاتف<input type="tel" name="phone" required></label>
+        </div>
+
+        <div>
+          <label>الولاية
+            <select name="state" id="stateSelect" required>
+              <option value="">اختر الولاية</option>
+              <option value="Adrar">أدرار</option>
+              <option value="Chlef">الشلف</option>
+              <option value="Laghouat">الأغواط</option>
+              <option value="Oum El Bouaghi">أم البواقي</option>
+              <option value="Batna">باتنة</option>
+              <option value="Béjaïa">بجاية</option>
+              <option value="Biskra">بسكرة</option>
+              <option value="Béchar">بشار</option>
+              <option value="Blida">البليدة</option>
+              <option value="Bouira">البويرة</option>
+              <option value="Tamanrasset">تمنراست</option>
+              <option value="Tébessa">تبسة</option>
+              <option value="Tlemcen">تلمسان</option>
+              <option value="Tiaret">تيارت</option>
+              <option value="Tizi Ouzou">تيزي وزو</option>
+              <option value="Alger">الجزائر</option>
+              <option value="Djelfa">الجلفة</option>
+              <option value="Jijel">جيجل</option>
+              <option value="Sétif">سطيف</option>
+              <option value="Saïda">سعيدة</option>
+              <option value="Skikda">سكيكدة</option>
+              <option value="Sidi Bel Abbès">سيدي بلعباس</option>
+              <option value="Annaba">عنابة</option>
+              <option value="Guelma">قالمة</option>
+              <option value="Constantine">قسنطينة</option>
+              <option value="Médéa">المدية</option>
+              <option value="Mostaganem">مستغانم</option>
+              <option value="M’Sila">المسيلة</option>
+              <option value="Mascara">معسكر</option>
+              <option value="Ouargla">ورقلة</option>
+              <option value="Oran">وهران</option>
+              <option value="El Bayadh">البيض</option>
+              <option value="Illizi">إليزي</option>
+              <option value="Bordj Bou Arreridj">برج بوعريريج</option>
+              <option value="Boumerdès">بومرداس</option>
+              <option value="El Tarf">الطارف</option>
+              <option value="Tindouf">تندوف</option>
+              <option value="Tissemsilt">تيسمسيلت</option>
+              <option value="El Oued">الوادي</option>
+              <option value="Khenchela">خنشلة</option>
+              <option value="Souk Ahras">سوق أهراس</option>
+              <option value="Tipaza">تيبازة</option>
+              <option value="Mila">ميلة</option>
+              <option value="Aïn Defla">عين الدفلى</option>
+              <option value="Naâma">النعامة</option>
+              <option value="Aïn Témouchent">عين تموشنت</option>
+              <option value="Ghardaïa">غرداية</option>
+              <option value="Relizane">غليزان</option>
+              <option value="Timimoun">تيميمون</option>
+              <option value="Ouled Djellal">أولاد جلال</option>
+              <option value="Beni Abbes">بني عباس</option>
+              <option value="In Salah">عين صالح</option>
+              <option value="Touggourt">تقرت</option>
+              <option value="El M’Ghair">المغير</option>
+              <option value="El Meniaa">المنيعة</option>
+            </select>
+          </label>
+        </div>
+
+        <div>
+          <label>المدينة<input type="text" name="city" required></label>
+        </div>
+
+        <div class="full">
+          <label>الشارع<input type="text" name="street" required></label>
+        </div>
+
+        <div>
+          <label>نوع التوصيل
+            <select name="deliveryType" id="deliveryType" required>
+              <option value="منزل">منزل</option>
+              <option value="مكتب">مكتب</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="full small">تكلفة التوصيل: <b id="deliveryCost">—</b></div>
+
+        <div class="full mt-1"><button class="btn" type="submit">تأكيد الطلب</button></div>
+      </form>
+    </section>
+
+    <!-- Summary -->
+    <aside class="card summary">
+      <h3 style="margin:0">ملخص الطلب</h3>
+      <div class="line"><span>سعر المنتج</span><span id="sumProduct">—</span></div>
+      <div class="line"><span>تكلفة التوصيل</span><span id="sumShipping">—</span></div>
+      <hr class="sep">
+      <div class="line total"><span>الإجمالي عند التسليم</span><span id="sumTotal">—</span></div>
+      <p class="small">الدفع عند الاستلام فقط.</p>
+    </aside>
+  </main>
+
+  <script>
+    const fmt = (n) => "DA " + (Number(n)||0).toLocaleString("en-DZ", {minimumFractionDigits:2, maximumFractionDigits:2});
+    const selected = JSON.parse(localStorage.getItem("selectedProduct") || "{}");
+    const productPrice = Number(selected.price||0);
+
+    if(selected.name){
+      document.getElementById("productName").textContent = "المنتج: " + selected.name;
+      document.getElementById("productPrice").textContent = fmt(productPrice);
+      document.getElementById("productVariant").textContent = "اللون/النوع: " + selected.variant;
+      document.getElementById("hiddenProductName").value = selected.name;
+      document.getElementById("hiddenProductPrice").value = fmt(productPrice);
+      document.getElementById("hiddenProductVariant").value = selected.variant;
+      document.getElementById("sumProduct").textContent = fmt(productPrice);
+    }
+
+    const shippingRates = {
+      "Adrar": { منزل:1100, مكتب:600 }, "Chlef":{ منزل:700, مكتب:400 }, "Laghouat":{ منزل:900, مكتب:400 },
+      "Oum El Bouaghi":{ منزل:800, مكتب:400 }, "Batna":{ منزل:800, مكتب:400 }, "Béjaïa":{ منزل:700, مكتب:400 },
+      "Biskra":{ منزل:1100, مكتب:600 }, "Béchar":{ منزل:900, مكتب:500 }, "Blida":{ منزل:500, مكتب:250 },
+      "Bouira":{ منزل:650, مكتب:400 }, "Tamanrasset":{ منزل:1300, مكتب:600 }, "Tébessa":{ منزل:800, مكتب:500 },
+      "Tlemcen":{ منزل:800, مكتب:400 }, "Tiaret":{ منزل:800, مكتب:400 }, "Tizi Ouzou":{ منزل:650, مكتب:400 },
+      "Alger":{ منزل:700, مكتب:400 }, "Djelfa":{ منزل:900, مكتب:500 }, "Jijel":{ منزل:700, مكتب:400 },
+      "Sétif":{ منزل:700, مكتب:400 }, "Saïda":{ منزل:800, مكتب:400 }, "Skikda":{ منزل:700, مكتب:400 },
+      "Sidi Bel Abbès":{ منزل:700, مكتب:400 }, "Annaba":{ منزل:700, مكتب:400 }, "Guelma":{ منزل:800, مكتب:400 },
+      "Constantine":{ منزل:700, مكتب:400 }, "Médéa":{ منزل:700, مكتب:400 }, "Mostaganem":{ منزل:700, مكتب:400 },
+      "M’Sila":{ منزل:800, مكتب:500 }, "Mascara":{ منزل:700, مكتب:400 }, "Ouargla":{ منزل:1000, مكتب:500 },
+      "Oran":{ منزل:700, مكتب:400 }, "El Bayadh":{ منزل:1000, مكتب:500 }, "Illizi":{ منزل:1300, مكتب:600 },
+      "Bordj Bou Arreridj":{ منزل:700, مكتب:400 }, "Boumerdès":{ منزل:600, مكتب:350 }, "El Tarf":{ منزل:800, مكتب:null },
+      "Tindouf":{ منزل:1300, مكتب:null }, "Tissemsilt":{ منزل:800, مكتب:400 }, "El Oued":{ منزل:900, مكتب:500 },
+      "Khenchela":{ منزل:800, مكتب:500 }, "Souk Ahras":{ منزل:800, مكتب:500 }, "Tipaza":{ منزل:600, مكتب:350 },
+      "Mila":{ منزل:700, مكتب:400 }, "Aïn Defla":{ منزل:600, مكتب:400 }, "Naâma":{ منزل:800, مكتب:null },
+      "Aïn Témouchent":{ منزل:700, مكتب:400 }, "Ghardaïa":{ منزل:1000, مكتب:500 }, "Relizane":{ منزل:700, مكتب:400 },
+      "Timimoun":{ منزل:1300, مكتب:null }, "Ouled Djellal":{ منزل:900, مكتب:null }, "Beni Abbes":{ منزل:1300, مكتب:null },
+      "In Salah":{ منزل:1300, مكتب:600 }, "Touggourt":{ منزل:900, مكتب:null }, "El M’Ghair":{ منزل:900, مكتب:null },
+      "El Meniaa":{ منزل:1000, مكتب:null }
+    };
+
+    function parseNum(n){ return Number(n)||0; }
+    function fmtNum(n){ return (Number(n)||0).toLocaleString("en-DZ", {minimumFractionDigits:2, maximumFractionDigits:2}); }
+
+    function updateSummary(){
+      const shipText = document.getElementById("deliveryCost").textContent;
+      const ship = Number(shipText.replace(/[^\d]/g, "")) || 0;
+      document.getElementById("sumShipping").textContent = ship ? "DA " + fmtNum(ship) : "—";
+      document.getElementById("sumTotal").textContent = "DA " + fmtNum((productPrice||0) + ship);
+    }
+
+    function updateDeliveryCost(){
+      const st = document.getElementById("stateSelect").value;
+      const typ = document.getElementById("deliveryType").value;
+      const out = document.getElementById("deliveryCost");
+      if(shippingRates[st]){
+        const cost = shippingRates[st][typ];
+        out.textContent = (cost==null) ? "غير متاح" : (cost + " دج");
+      } else {
+        out.textContent = "—";
+      }
+      updateSummary();
+    }
+
+    document.getElementById("stateSelect").addEventListener("change", updateDeliveryCost);
+    document.getElementById("deliveryType").addEventListener("change", updateDeliveryCost);
+  </script>
+</body>
+</html>
